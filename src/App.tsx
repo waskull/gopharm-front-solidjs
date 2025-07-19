@@ -42,7 +42,7 @@ const App: Component = () => {
                 </ul>
               </li>
               <li><a href="#contact" class="hover:text-primary transition-colors duration-300">Contacto</a></li>
-              <li><a href="#"
+              <li><a onclick={() => navigate('/auth/signin')} href="#"
                 class="bg-primary font-semibold hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-300">Iniciemos</a></li>
             </ul>
           </nav>
@@ -84,10 +84,10 @@ const App: Component = () => {
 
             <div class="mt-4 md:mt-8">
               <button
-                onClick={() => { navigate("/dashboard"); }}
-                class="inline-block rounded-sm w-full bg-green-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:ring-3 focus:ring-green-400 focus:outline-hidden"
+                onclick={() => navigate('/auth/signin')}
+                class="inline-block rounded-sm w-6/12 bg-green-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:ring-3 focus:ring-green-400 focus:outline-hidden"
               >
-                Ir al Dashboard
+                iniciar sesión
               </button>
             </div>
           </div>
