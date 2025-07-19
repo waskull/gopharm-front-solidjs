@@ -1,2 +1,2 @@
 ## En desarrollo
-Demo [GoPharm](https://pnpm.io](https://gopharm.netlify.app/) en `Netlify`
+Demo [GoPharm](https://gopharm.netlify.app) en `Netlify`
