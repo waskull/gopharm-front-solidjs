@@ -13,7 +13,7 @@ const App: Component = () => {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707.707m12.728 0l.707.707M6.343 17.657l.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
-            <span class="text-2xl font-bold text-gray-50 dark:text-white">MyBrand</span>
+            <span class="text-2xl font-bold text-gray-50 dark:text-white">GoPharm</span>
           </a>
 
 
@@ -58,12 +58,12 @@ const App: Component = () => {
               <a href="#services" id="services-dropdown-toggle" class="block py-2 hover:text-primary">Servicios</a>
 
               <ul id="services-dropdown" class="hidden pl-4">
-                <li><a href="#" class="block py-2 hover:text-primary">Service 1</a></li>
-                <li><a href="#" class="block py-2 hover:text-primary">Service 2</a></li>
-                <li><a href="#" class="block py-2 hover:text-primary">Service 3</a></li>
+                <li><a href="#" class="block py-2 hover:text-primary">Servicio 1</a></li>
+                <li><a href="#" class="block py-2 hover:text-primary">Servicio 2</a></li>
+                <li><a href="#" class="block py-2 hover:text-primary">Servicio 3</a></li>
               </ul>
             </li>
-            <li><a href="#contact" class="block py-2 hover:text-primary">Contact</a></li>
+            <li><a href="#contact" class="block py-2 hover:text-primary">Contacto</a></li>
             <li><a href="#"
               class="block py-2 bg-primary hover:bg-secondary text-white rounded-md text-center transition-colors duration-300">Iniciemos</a></li>
           </ul>
@@ -87,7 +87,7 @@ const App: Component = () => {
                 onclick={() => navigate('/auth/signin')}
                 class="inline-block rounded-sm w-6/12 bg-green-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:ring-3 focus:ring-green-400 focus:outline-hidden"
               >
-                iniciar sesión
+                Iniciar sesión
               </button>
             </div>
           </div>
