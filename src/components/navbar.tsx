@@ -60,18 +60,6 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                                     >
                                         Configuración
                                     </a>
-                                    <a href="#"
-                                        class="block w-full px-3 py-2 text-left text-sm font-medium text-red-700 transition-colors hover:bg-red-50 dark:text-red-600 dark:hover:bg-red-700/20"
-                                        onClick={async () => {
-                                            await localStorage.removeItem("accessToken");
-                                            await localStorage.removeItem("refreshToken");
-                                            await localStorage.removeItem("fullname");
-                                            await localStorage.removeItem("image");
-                                            await localStorage.removeItem("id");
-                                            navigate("/");
-                                        }}>
-                                        Salir
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -79,12 +67,11 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                 <a href="#"
                     class="block rounded-lg ml-2 px-3 py-2 text-left text-sm font-medium text-red-700 transition-colors hover:bg-red-50 dark:text-red-600 dark:hover:bg-red-700/20"
                     onClick={async () => {
-                        console.log("gfds");
-                        await localStorage.removeItem("accessToken");
-                        await localStorage.removeItem("refreshToken");
-                        await localStorage.removeItem("fullname");
-                        await localStorage.removeItem("image");
-                        await localStorage.removeItem("id");
+                        localStorage.removeItem("accessToken");
+                        localStorage.removeItem("refreshToken");
+                        localStorage.removeItem("fullname");
+                        localStorage.removeItem("image");
+                        localStorage.removeItem("id");
                         navigate("/");
                     }}>
                     Salir
