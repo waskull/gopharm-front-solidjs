@@ -66,7 +66,7 @@ export default function SignIn(): JSX.Element {
                             value={username()}
                             required
                             placeholder="emilys"
-                            class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none border focus:border-green-600 shadow-sm rounded-lg"
+                            class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none  transition duration-150 ease-in-out border focus:border-green-600 shadow-sm rounded-lg"
                         />
                     </div>
                     <div>
@@ -77,7 +77,7 @@ export default function SignIn(): JSX.Element {
                             value={password()}
                             required
                             placeholder="emilyspass"
-                            class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none border focus:border-green-600 shadow-sm rounded-lg"
+                            class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none  transition duration-150 ease-in-out border focus:border-green-600 shadow-sm rounded-lg"
                         />
                     </div>
                     <div class="flex items-center justify-between text-sm">

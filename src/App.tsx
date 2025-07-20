@@ -1,10 +1,23 @@
 import { useNavigate } from '@solidjs/router';
-import type { Component } from 'solid-js';
-
+import { createSignal, Show, type Component } from 'solid-js';
+import { FaBrandsFacebook, FaBrandsInstagram, FaBrandsTwitter } from "solid-icons/fa";
+import { Slider, SliderProvider, SliderButton } from "solid-slider";
+import { adaptiveWidth } from "solid-slider/plugins/adaptiveWidth";
+import { adaptiveHeight } from "solid-slider/plugins/adaptiveHeight";
+import "solid-slider/slider.css";
 const App: Component = () => {
   const navigate = useNavigate();
+  const [toggleAlert, setToggleAlert] = createSignal(false);
   return (
     <div>
+      <Show when={!toggleAlert()}>
+        <div class="flex items-center justify-between p-1 leading-normal text-blue-600 bg-blue-200" role="alert">
+          <p class="font-semibold ml-12">Recuerda seguirnos en redes sociales <FaBrandsFacebook class="inline mr-2 ml-4 cursor-pointer" /> <FaBrandsInstagram class="inline mr-2 cursor-pointer text-orange-500" /> <FaBrandsTwitter class="inline mr-2 cursor-pointer text-blue-400" /> </p>
+          <svg onClick={() => setToggleAlert(!toggleAlert())} class="inline w-4 h-4 fill-current ml-2 hover:opacity-80 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-114.7 0-208-93.31-208-208S141.3 48 256 48s208 93.31 208 208S370.7 464 256 464zM359.5 133.7c-10.11-8.578-25.28-7.297-33.83 2.828L256 218.8L186.3 136.5C177.8 126.4 162.6 125.1 152.5 133.7C142.4 142.2 141.1 157.4 149.7 167.5L224.6 256l-74.88 88.5c-8.562 10.11-7.297 25.27 2.828 33.83C157 382.1 162.5 384 167.1 384c6.812 0 13.59-2.891 18.34-8.5L256 293.2l69.67 82.34C330.4 381.1 337.2 384 344 384c5.469 0 10.98-1.859 15.48-5.672c10.12-8.562 11.39-23.72 2.828-33.83L287.4 256l74.88-88.5C370.9 157.4 369.6 142.2 359.5 133.7z" />
+          </svg>
+        </div>
+      </Show>
       <header class="bg-green-500 text-gray-950 shadow-lg py-4 sticky top-0 z-50">
         <div class="container mx-auto flex items-center justify-between px-4">
 
@@ -128,27 +141,24 @@ const App: Component = () => {
           </p>
         </section>
 
-        <section class="bg-gray-100 py-12 px-4">
-          <h2 class="text-2xl font-bold text-center">State-Of-The-Art Technology</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-5xl mx-auto">
-            <div class="p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow">
-              <h3 class="text-xl font-bold">Advanced Diagnostics</h3>
-              <p class="text-gray-700 mt-2">We utilize the latest technology for accurate diagnostics.</p>
-            </div>
-            <div class="p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow">
-              <h3 class="text-xl font-bold">Telemedicine</h3>
-              <p class="text-gray-700 mt-2">Consult with our specialists from the comfort of your home.</p>
-            </div>
-            <div class="p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow">
-              <h3 class="text-xl font-bold">Robotic Surgery</h3>
-              <p class="text-gray-700 mt-2">Minimally invasive procedures with precision.</p>
-            </div>
-            <div class="p-4 shadow-lg rounded-lg bg-white hover:shadow-xl transition-shadow">
-              <h3 class="text-xl font-bold">Electronic Health Records</h3>
-              <p class="text-gray-700 mt-2">Secure and easy access to your medical records.</p>
-            </div>
-          </div>
-        </section>
+      {/*  <section class="bg-gray-100 py-8 px-12">
+
+           <SliderProvider>
+            <Slider class="" options={{ loop: true }}>
+              <div><img class="mb-7 rounded-xl" src="https://iili.io/33etOiX.png"/>
+                <div>
+                  <h3 class="text-[#0A2025] dark:text-white text-2xl font-bold font-['Roboto']">Keni Golf</h3>
+                  <p class="mt-5 mb-8 text-[#0A2025] dark:text-white text-sm font-normal font-['Roboto']">Everything you need
+                    for any course</p><button class="text-[#3e9d26] text-sm font-semibold font-['Roboto']">Shop</button>
+                </div>
+              </div>
+              <div>Slide 2</div>
+              <div>Slide 3</div>
+            </Slider>
+            <SliderButton prev>Previous</SliderButton>
+            <SliderButton next>Next</SliderButton>
+          </SliderProvider> 
+        </section>*/}
 
         <section class="bg-green-500 text-white text-center py-12 px-4">
           <h2 class="text-2xl font-bold">Patient Testimonials</h2>
