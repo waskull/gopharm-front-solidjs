@@ -98,6 +98,13 @@ export interface Crypto {
 }
 
 function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
+    const [searchText, setSearchText] = createSignal<string>("");
+    const filteredUsers = (users: Accessor<Root>) => users().users.filter((user) => {
+        return Object.values(user)
+            .join('')
+            .toLowerCase()
+            .includes(searchText().toLowerCase())
+    });
     return (
         <div class={`${Math.ceil(users().total / 10) > 1 ? " pb-20 " : ""} relative mx-auto max-w-screen-2xl shadow-md sm:rounded-lg flex flex-col text-gray-500 overflow-y-auto h-full`}>
             <div class="p-6 border-b border-gray-200 bg-gray-100 dark:bg-gray-800 shadow-md overflow-hidden">
@@ -108,7 +115,7 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                     </div>
                     <div class="mt-4 md:mt-0">
                         <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Agregar usero
+                            Agregar usuario
                         </button>
                     </div>
                 </div>
@@ -121,7 +128,7 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <input type="text" class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full " placeholder="Buscar usuario..." />
+                        <input value={searchText()} onChange={(e: any) => setSearchText(e.target.value)}  type="text" class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full " placeholder="Buscar usuario..." />
                     </div>
                     <div>
                         <select class="border border-gray-400 text-gray-50 dark:gray-50 focus:text-gray-900 focus:dark:text-gray-50 rounded-lg px-4 py-2 hover:text-gray-900 hover:bg-gray-800 hover:dark:text-gray-50  w-full sm:w-auto">
@@ -155,7 +162,7 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                     </tr>
                 </thead>
                 <tbody class="undefined select-none">
-                    <For each={users().users}>
+                    <For each={filteredUsers(users)}>
                         {(user) => (
                             <tr class="hover:bg-gray-100 font-semibold inter-font dark:hover:bg-gray-700 text-gray-900 dark:text-gray-50">
                                 <td class="px-6 py-4 text-gray-900 dark:text-gray-50 whitespace-nowrap text-sm">
@@ -211,7 +218,7 @@ export default function Users(): JSX.Element {
                     </div>
                 </div>
                 <Show when={users().total > 10}>
-                    <div class="flex flex-col items-center max-w-screen min-w-[calc(100%_-_64px)] pt-4 fixed bottom-0 border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 sm:flex sm:justify-between pb-3.5">
+                    <div class="flex flex-col items-center w-full pt-4 fixed bottom-0 border border-gray-200 bg-white justify-center dark:border-gray-700 dark:bg-gray-800 sm:flex sm:justify-between pb-3.5">
                         <Pagination total={Math.ceil(users().total / 10)} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                     </div>
                 </Show>

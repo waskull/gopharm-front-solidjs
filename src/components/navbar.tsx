@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "@solidjs/router";
 import Dismiss from "solid-dismiss";
-import { FaSolidBell, FaSolidBars} from "solid-icons/fa";
+import { FaSolidBell, FaSolidBars } from "solid-icons/fa";
 import { FiSearch } from 'solid-icons/fi'
-import { Accessor, createSignal, JSX} from "solid-js";
+import { Accessor, createSignal, JSX } from "solid-js";
 import { routes } from "./sidebar";
 
 export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSidebar: Accessor<boolean>, setToggleSidebar: Function }): JSX.Element {
@@ -20,14 +20,15 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
             </div>
             <div class="flex items-center gap-x-5">
                 <div class="relative md:w-65">
-                    <span class="relative md:absolute inset-y-0 left-0 flex pl-2 items-center">
+                    {/*  <span class="relative md:absolute inset-y-0 left-0 flex pl-2 items-center">
                         <button class="p-1 focus:outline-none text-white md:text-white"><FiSearch /></button>
                     </span>
-                    <input placeholder="Buscar..." class="w-full px-4 py-1 pl-12 rounded dark:bg-gray-700 text-white shadow outline-none hidden md:block" type="text" />
+                     <input placeholder="Buscar..." class="w-full px-4 py-1 pl-12 rounded dark:bg-gray-700 text-white shadow outline-none hidden md:block" type="text" />
+               */}
                 </div>
                 <div class="text-white"> <FaSolidBell class="w-6 h-6" /> </div>
                 <div class="relative flex">
-                    <button ref={btnEl} class="h-8 w-8 flex-shrink-0 justify-center">
+                    <button ref={btnEl} class="mr-1 h-8 w-8 flex-shrink-0 justify-center">
                         <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt={localStorage.getItem("image")} />
                     </button>
                     <Dismiss

@@ -1,7 +1,7 @@
 {
-  "name": "vite-template-solid",
+  "name": "crud-solid-tailwind",
   "version": "0.0.0",
-  "description": "",
+  "description": "CRUD SolidJS + Taildwind App",
   "type": "module",
   "scripts": {
     "start": "vite",

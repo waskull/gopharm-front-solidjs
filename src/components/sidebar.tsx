@@ -51,7 +51,7 @@ export default function Sidebar({ toggleSidebar }: { toggleSidebar: Accessor<boo
                         {(route) => (
                             <li class={` mb-2  rounded-lg hover:shadow`}>
                         
-                                <a href={route.pathname} class={`${route.pathname === pathname ? "bg-gray-600 rounded-lg hover:bg-gray-700" : "bg-gray-800 rounded-lg "} flex items-center px-4 py-2.5  text-sm font-medium  text-white group transition-all duration-200 hover:bg-gray-600`}>
+                                <a href={route.pathname} class={`${route.pathname === pathname ? "bg-gray-600 font-semibold rounded-lg hover:bg-gray-700" : "bg-gray-800 rounded-lg font-medium "}  flex items-center px-4 py-2.5  text-md text-white group transition-all duration-200 hover:bg-gray-600`}>
                                     <route.icon class="h-5 w-5 mr-3" />
                                     <span>{route.name}</span>
                                 </a>
