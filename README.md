@@ -1,2 +1,2 @@
 ## En desarrollo
-Demo [GoPharm](https://gopharm.netlify.app) en `Netlify`
+Demo [Solid-CRUD](https://gopharm.netlify.app) en `Netlify`
