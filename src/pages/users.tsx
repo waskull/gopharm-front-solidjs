@@ -2,6 +2,7 @@ import { Accessor, createEffect, createSignal, For, JSX, Show } from "solid-js";
 import DashboardLayout from "../layouts/dashboard-layout";
 import Pagination from "../components/pagination";
 import { FiEdit, FiTrash } from 'solid-icons/fi'
+import Modal from "../components/modal";
 
 export interface Root {
     users: User[]
@@ -99,6 +100,13 @@ export interface Crypto {
 
 function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
     const [searchText, setSearchText] = createSignal<string>("");
+    const [isOpen, setIsOpen] = createSignal(false);
+    const [data, setData] = createSignal<User>({} as User);
+
+    const openModal = (user: User) => {
+        setData(user);
+        setIsOpen(true);
+    };
     const filteredUsers = (users: Accessor<Root>) => users().users.filter((user) => {
         return Object.values(user)
             .join('')
@@ -128,7 +136,7 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <input value={searchText()} onChange={(e: any) => setSearchText(e.target.value)}  type="text" class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full " placeholder="Buscar usuario..." />
+                        <input value={searchText()} onChange={(e: any) => setSearchText(e.target.value)} type="text" class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full " placeholder="Buscar usuario..." />
                     </div>
                     <div>
                         <select class="border border-gray-400 text-gray-50 dark:gray-50 focus:text-gray-900 focus:dark:text-gray-50 rounded-lg px-4 py-2 hover:text-gray-900 hover:bg-gray-800 hover:dark:text-gray-50  w-full sm:w-auto">
@@ -182,8 +190,25 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                                 </td>
                                 <td class="px-6 py-1.5 whitespace-nowrap text-sm">{user.username}</td>
                                 <td class="flex justify-end px-6 py-4 whitespace-nowrap text-right text-sm font-semibold">
-                                    <a href="#" class="text-orange-600 hover:text-orange-400 mr-3"><FiEdit class="w-5 h-5" /></a>
-                                    <a href="#" class="text-red-600 hover:text-red-900"><FiTrash class="w-5 h-5" /></a>
+                                    <Modal title="Editar Usuario">
+                                        <div class="p-4 md:p-5 space-y-4">
+                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                                            </p>
+                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                                            </p>
+                                        </div>
+                                        <div class="p-4 md:p-5 space-y-4">
+                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                                            </p>
+                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                                            </p>
+                                        </div>
+                                    </Modal>
+                                    <a class="cursor-pointer text-red-600 hover:text-red-900"><FiTrash class="w-5 h-5" /></a>
                                 </td>
                             </tr>
                         )}

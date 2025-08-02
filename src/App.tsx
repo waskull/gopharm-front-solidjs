@@ -1,9 +1,6 @@
 import { useNavigate } from '@solidjs/router';
 import { createSignal, Show, type Component } from 'solid-js';
 import { FaBrandsFacebook, FaBrandsInstagram, FaBrandsTwitter } from "solid-icons/fa";
-import { Slider, SliderProvider, SliderButton } from "solid-slider";
-import { adaptiveWidth } from "solid-slider/plugins/adaptiveWidth";
-import { adaptiveHeight } from "solid-slider/plugins/adaptiveHeight";
 import "solid-slider/slider.css";
 const App: Component = () => {
   const navigate = useNavigate();
@@ -41,11 +38,11 @@ const App: Component = () => {
 
 
           <nav class="hidden md:block">
-            <ul class="flex space-x-8 dark:text-white">
-              <li><a href="#home" class="hover:text-primary transition-colors duration-300">Inicio</a></li>
-              <li><a href="#about" class="hover:text-primary transition-colors duration-300">Nosotros</a></li>
+            <ul class="flex space-x-1 dark:text-white">
+              <li><a href="#home" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Inicio</a></li>
+              <li><a href="#about" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Nosotros</a></li>
               <li class="group relative">
-                <a href="#services" class="hover:text-primary transition-colors duration-300">Servicios</a>
+                <a href="#services" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Servicios</a>
 
                 <ul
                   class="absolute dark:text-gray-950 left-0 hidden group-hover:block bg-white shadow-md py-2 mt-1 rounded-md w-48 transition-all duration-300">
@@ -54,9 +51,9 @@ const App: Component = () => {
                   <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Service 3</a></li>
                 </ul>
               </li>
-              <li><a href="#contact" class="hover:text-primary transition-colors duration-300">Contacto</a></li>
+              <li><a href="#contact" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Contacto</a></li>
               <li><a onclick={() => navigate('/auth/signin')} href="#"
-                class="bg-primary font-semibold hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-300">Iniciemos</a></li>
+                class="bg-primary font-semibold hover:bg-green-800 bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-300">Iniciemos</a></li>
             </ul>
           </nav>
         </div>

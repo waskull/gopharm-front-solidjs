@@ -17,6 +17,70 @@
   font-style: normal;
 }
 
+.modal {
+  position: relative;
+  width: 80vw;
+  max-width: 800px;
+  padding: 25px;
+}
+
+.overlay {
+  @apply inset-0 bg-black opacity-50 flex backdrop:blur-md justify-center items-center;
+}
+
+.modal-container {
+  @apply h-full w-full  z-50 left-0 top-0 overflow-y-auto flex items-center justify-center min-h-screen;
+}
+
+.fade-overlay-enter {
+  opacity: 0.1;
+}
+
+.fade-overlay-enter-to {
+  opacity: 1;
+}
+
+.fade-overlay-exit {
+  opacity: 1;
+}
+
+.fade-overlay-exit-to {
+  opacity: 0;
+}
+
+.fade-overlay-enter-to,
+.fade-overlay-exit,
+.fade-overlay-exit-to {
+  transition: opacity 200ms;
+}
+
+
+
+.slide-modal-enter {
+  transform: translateY(100vh);
+}
+
+.slide-modal-enter-to {
+  transform: translateY(0);
+}
+
+.slide-modal-exit {
+  transform: translateY(0);
+}
+
+.slide-modal-exit-to {
+  /* css variable updated onBeforeExit callback
+  to determine whether modal slides up or down */
+  transform: translateY(var(--slide-exit-y));
+}
+
+.slide-modal-enter-to,
+.slide-modal-exit,
+.slide-modal-exit-to {
+  transition: transform 300ms;
+}
+
+
 .apexcharts-tooltip {
   @apply bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-400 border-0 rounded-lg shadow-lg;
 }
