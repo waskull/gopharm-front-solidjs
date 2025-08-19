@@ -4,6 +4,7 @@ import { FaSolidBell, FaSolidBars } from "solid-icons/fa";
 import { FiSearch } from 'solid-icons/fi'
 import { Accessor, createSignal, JSX } from "solid-js";
 import { routes } from "./sidebar";
+import DarkModeToggle from "./DarkModeToggle";
 
 export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSidebar: Accessor<boolean>, setToggleSidebar: Function }): JSX.Element {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                      <input placeholder="Buscar..." class="w-full px-4 py-1 pl-12 rounded dark:bg-gray-700 text-white shadow outline-none hidden md:block" type="text" />
                */}
                 </div>
-                <div class="text-white"> <FaSolidBell class="w-6 h-6" /> </div>
+                <DarkModeToggle/>
                 <div class="relative flex">
                     <button ref={btnEl} class="mr-1 h-8 w-8 flex-shrink-0 justify-center">
                         <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt={localStorage.getItem("image")} />

@@ -70,7 +70,7 @@ function ProductList({ products }: { products: Accessor<Root> }): JSX.Element {
             <div class="p-6 border-b border-gray-200 bg-gray-100 dark:bg-gray-800 shadow-md overflow-hidden">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div>
-                        <h2 class="text-xl font-bold text-gray-100">Productos Registrados</h2>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">Productos Registrados</h2>
                         <p class="text-gray-500 mt-1">Aqui podras ver todos nuestros productos.</p>
                     </div>
                     <div class="mt-4 md:mt-0">
@@ -91,7 +91,7 @@ function ProductList({ products }: { products: Accessor<Root> }): JSX.Element {
                         <input onChange={(e) => setSearchText(e.currentTarget.value)} value={searchText()} type="text" class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full " placeholder="Buscar producto..." />
                     </div>
                     <div>
-                        <select class="border border-gray-400 text-gray-50 dark:gray-50 focus:text-gray-900 focus:dark:text-gray-50 rounded-lg px-4 py-2 hover:text-gray-900 hover:bg-gray-800 hover:dark:text-gray-50  w-full sm:w-auto">
+                        <select class="border border-gray-400 text-gray-500 dark:text-gray-50 focus:text-gray-900 focus:dark:text-gray-100 rounded-lg px-4 py-2 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 hover:dark:text-gray-200  w-full sm:w-auto">
                             <option value="">Todos los roles</option>
                             <option value="admin">Administrador</option>
                             <option value="moderator">Moderador</option>

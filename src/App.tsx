@@ -2,6 +2,7 @@ import { useNavigate } from '@solidjs/router';
 import { createSignal, Show, type Component } from 'solid-js';
 import { FaBrandsFacebook, FaBrandsInstagram, FaBrandsTwitter } from "solid-icons/fa";
 import "solid-slider/slider.css";
+import DarkModeToggle from './components/DarkModeToggle';
 const App: Component = () => {
   const navigate = useNavigate();
   const [toggleAlert, setToggleAlert] = createSignal(false);
@@ -38,7 +39,7 @@ const App: Component = () => {
 
 
           <nav class="hidden md:block">
-            <ul class="flex space-x-1 dark:text-white">
+            <ul class="flex space-x-1 text-white font-normal dark:text-white">
               <li><a href="#home" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Inicio</a></li>
               <li><a href="#about" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Nosotros</a></li>
               <li class="group relative">
@@ -54,6 +55,7 @@ const App: Component = () => {
               <li><a href="#contact" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Contacto</a></li>
               <li><a onclick={() => navigate('/auth/signin')} href="#"
                 class="bg-primary font-semibold hover:bg-green-800 bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-300">Iniciemos</a></li>
+                <li class="px-4"><DarkModeToggle></DarkModeToggle></li>
             </ul>
           </nav>
         </div>
@@ -62,7 +64,7 @@ const App: Component = () => {
         <nav id="mobile-menu"
           class="hidden md:hidden text-gray-950 bg-gray-50 border-t border-gray-200 transition-height duration-300 ease-in-out">
           <ul class="px-4 py-2 text-gray-950">
-            <li><a href="#home" class="block py-2 hover:text-primary">Home</a></li>
+            <li><a href="#home" class="block py-2 hover:text-primary">Inicio</a></li>
             <li><a href="#about" class="block py-2 hover:text-primary">Nosotros</a></li>
             <li>
               <a href="#services" id="services-dropdown-toggle" class="block py-2 hover:text-primary">Servicios</a>
@@ -114,19 +116,19 @@ const App: Component = () => {
           <h1 class="text-4xl font-bold mt-0">Nosotros</h1>
         </header>
 
-        <section class="text-center text-gray-950 py-12 bg-gray-50 px-4">
+        <section class="text-center dark:bg-gray-800 bg-gray-100 text-gray-950 py-12 dark:text-gray-100 px-4">
           <h2 class="text-2xl font-bold">Nuestra Misión</h2>
-          <p class="mt-4 text-gray-500 max-w-2xl mx-auto">
+          <p class="mt-4 text-gray-600 dark:text-gray-100 max-w-2xl mx-auto">
             Our mission is to provide exceptional healthcare services with a focus on availability, reliability, and support.
           </p>
           <div class="flex justify-center space-x-8 mt-8 animate-fadeIn">
             <div class="transition transform hover:scale-110">
               <h3 class="text-xl font-bold" >85+</h3>
-              <p class="text-gray-500">Specialists</p>
+              <p class="text-gray-500 dark:text-gray-100">Specialists</p>
             </div>
             <div class="transition transform hover:scale-110">
               <h3 class="text-xl font-bold" >25+</h3>
-              <p class="text-gray-500">Years of Experience</p>
+              <p class="text-gray-500 dark:text-gray-100">Years of Experience</p>
             </div>
           </div>
         </section>
@@ -138,7 +140,7 @@ const App: Component = () => {
           </p>
         </section>
 
-      {/*  <section class="bg-gray-100 py-8 px-12">
+        {/*  <section class="bg-gray-100 py-8 px-12">
 
            <SliderProvider>
             <Slider class="" options={{ loop: true }}>
@@ -187,28 +189,28 @@ const App: Component = () => {
           </div>
         </section>
 
-        <section class="text-center py-12 px-4 w-full">
+        <section class="dark:bg-gray-800 bg-gray-100 text-center py-12 px-4 w-full text-gray-800 dark:text-gray-100">
           <h2 class="text-2xl font-bold">Get Answer To Your Most Asked Questions</h2>
           <div class="mt-8">
             <div class="p-4 border rounded-lg shadow-md transition transform hover:scale-100 scale-90">
               <h3 class="text-xl font-bold">How do I make an appointment online?</h3>
-              <p class="mt-2 text-gray-700">You can book an appointment online through our website or mobile app.</p>
+              <p class="mt-2 text-gray-700 dark:text-gray-400">You can book an appointment online through our website or mobile app.</p>
             </div>
             <div class="p-4 border rounded-lg shadow-md transition transform hover:scale-100 scale-90 mt-4">
               <h3 class="text-xl font-bold">What types of medical tests do you offer?</h3>
-              <p class="mt-2 text-gray-700">We offer a wide range of medical tests including blood tests, imaging, and more.</p>
+              <p class="mt-2 text-gray-700 dark:text-gray-400">We offer a wide range of medical tests including blood tests, imaging, and more.</p>
             </div>
             <div class="p-4 border rounded-lg shadow-md transition transform hover:scale-100 scale-90 mt-4">
               <h3 class="text-xl font-bold">Do you accept insurance plans?</h3>
-              <p class="mt-2 text-gray-700">Yes, we accept most major insurance plans.</p>
+              <p class="mt-2 text-gray-700 dark:text-gray-400">Yes, we accept most major insurance plans.</p>
             </div>
           </div>
         </section>
 
       </div>
 
-      <section id="contact" class='h-screen bg-gray-800'>
-        <div class="container my-12 mx-auto ">
+      <section id="contact" class='h-screen dark:bg-gray-800 bg-gray-100'>
+        <div class=" my-12 mx-auto ">
           <header class="bg-green-500 text-gray-50 text-center w-full py-12">
             <h1 class="text-2xl font-bold mt-0">Contactanos</h1>
           </header>
@@ -224,14 +226,14 @@ const App: Component = () => {
                   <label class="block font-medium mb-[2px] text-green-400" for="exampleInput90">
                     Name
                   </label>
-                  <input type="text" class="px-2 py-2 border w-full outline-none rounded-md" id="exampleInput90" placeholder="Name" />
+                  <input type="text" class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-4  00 w-full outline-none rounded-md" id="exampleInput90" placeholder="Name" />
                 </div>
 
                 <div class="mb-3 w-full">
                   <label class="block font-medium mb-[2px] text-green-400" for="exampleInput90">
                     Email
                   </label>
-                  <input type="email" class="px-2 py-2 border w-full outline-none rounded-md" id="exampleInput90"
+                  <input type="email" class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-4  w-full outline-none rounded-md" id="exampleInput90"
                     placeholder="Enter your email address" />
                 </div>
 
@@ -239,7 +241,7 @@ const App: Component = () => {
                   <label class="block font-medium mb-[2px] text-green-400" for="exampleInput90">
                     Message
                   </label>
-                  <textarea class="px-2 py-2 border rounded-[5px] w-full outline-none" name="" id=""></textarea>
+                  <textarea placeholder='Escribe tu mensaje' class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-4  rounded-[5px] w-full outline-none" name="" id=""></textarea>
                 </div>
 
                 <button type="button"
@@ -260,13 +262,13 @@ const App: Component = () => {
                           </div>
                         </div>
                         <div class="ml-6 grow">
-                          <p class="mb-2 font-bold">
+                          <p class="mb-2 text-gray-400 dark:text-gray-200 font-bold">
                             Información de contacto
                           </p>
-                          <p class="text-neutral-500 ">
+                          <p class="text-gray-700 dark:text-gray-200">
                             soporte@gmail.com
                           </p>
-                          <p class="text-neutral-500 ">
+                          <p class="text-gray-700 dark:text-gray-200">
                             +58 414-234-67-89
                           </p>
                         </div>
@@ -285,13 +287,13 @@ const App: Component = () => {
                           </div>
                         </div>
                         <div class="ml-6 grow">
-                          <p class="mb-2 font-bold ">
+                          <p class="mb-2 font-bold text-gray-400 dark:text-gray-200">
                             Sales questions
                           </p>
-                          <p class="text-neutral-500 ">
+                          <p class="text-gray-700 dark:text-gray-200">
                             sales@example.com
                           </p>
-                          <p class="text-neutral-500 ">
+                          <p class="text-gray-700 dark:text-gray-200">
                             +1 234-567-89
                           </p>
                         </div>
