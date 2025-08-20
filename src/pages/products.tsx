@@ -90,7 +90,7 @@ function ProductList({ products }: { products: Accessor<Root> }): JSX.Element {
                         </div>
                         <input onChange={(e) => setSearchText(e.currentTarget.value)} value={searchText()} type="text" class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full " placeholder="Buscar producto..." />
                     </div>
-                    <div>
+                    {/* <div>
                         <select class="border border-gray-400 text-gray-500 dark:text-gray-50 focus:text-gray-900 focus:dark:text-gray-100 rounded-lg px-4 py-2 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 hover:dark:text-gray-200  w-full sm:w-auto">
                             <option value="">Todos los roles</option>
                             <option value="admin">Administrador</option>
@@ -98,7 +98,7 @@ function ProductList({ products }: { products: Accessor<Root> }): JSX.Element {
                             <option value="marketing">Marketing</option>
                             <option value="sales">Ventas</option>
                         </select>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <table class="min-w-full dark:bg-gray-800 border-gray-700 undefined rounded-lg">

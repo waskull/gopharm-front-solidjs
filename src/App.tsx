@@ -3,6 +3,7 @@ import { createSignal, Show, type Component } from 'solid-js';
 import { FaBrandsFacebook, FaBrandsInstagram, FaBrandsTwitter } from "solid-icons/fa";
 import "solid-slider/slider.css";
 import DarkModeToggle from './components/DarkModeToggle';
+import { authStore } from "./store";
 const App: Component = () => {
   const navigate = useNavigate();
   const [toggleAlert, setToggleAlert] = createSignal(false);
@@ -39,7 +40,7 @@ const App: Component = () => {
 
 
           <nav class="hidden md:block">
-            <ul class="flex space-x-1 text-white font-normal dark:text-white">
+            <ul class="flex justify-center items-center space-x-1 text-white font-normal dark:text-white">
               <li><a href="#home" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Inicio</a></li>
               <li><a href="#about" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Nosotros</a></li>
               <li class="group relative">
@@ -53,9 +54,14 @@ const App: Component = () => {
                 </ul>
               </li>
               <li><a href="#contact" class="hover:text-primary hover:bg-green-800 px-4 py-2 transition-colors duration-300 rounded-md">Contacto</a></li>
-              <li><a onclick={() => navigate('/auth/signin')} href="#"
-                class="bg-primary font-semibold hover:bg-green-800 bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-300">Iniciemos</a></li>
-                <li class="px-4"><DarkModeToggle></DarkModeToggle></li>
+              <Show when={
+                authStore.user.isAuthenticated}
+              >{<li><a href="#" onclick={() => navigate('/dashboard')} class="bg-primary font-semibold hover:bg-green-800 bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-300">Dashboard</a></li>}</Show>
+              <Show when={!authStore.user.isAuthenticated}>
+                <li><a onclick={() => navigate('/auth/signin')} href="#"
+                  class="bg-primary font-semibold hover:bg-green-800 bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-300">Iniciemos</a></li>
+              </Show>
+              <li class="px-4"><DarkModeToggle></DarkModeToggle></li>
             </ul>
           </nav>
         </div>
@@ -96,10 +102,12 @@ const App: Component = () => {
 
             <div class="mt-4 md:mt-8">
               <button
-                onclick={() => navigate('/auth/signin')}
-                class="inline-block rounded-sm w-6/12 bg-green-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:ring-3 focus:ring-green-400 focus:outline-hidden"
+                onclick={() => {
+                  authStore.user.isAuthenticated ? navigate('/dashboard') : navigate('/auth/signin')
+                }}
+                class="inline-block rounded-sm w-full bg-green-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:ring-3 focus:ring-green-400 focus:outline-hidden"
               >
-                Iniciar sesión
+                {authStore.user.isAuthenticated ? "Panel de Inicio" : "Iniciemos"}
               </button>
             </div>
           </div>
@@ -111,7 +119,7 @@ const App: Component = () => {
           class="h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[20px] md:h-[calc(100%_-_3rem)] md:rounded-ss-[40px]"
         />
       </section>
-      <div id="about" class="bg-gray-50">
+      <div id="about" class="bg-gray-50 dark:bg-gray-800">
         <header class="bg-green-500 text-gray-50 text-center py-12">
           <h1 class="text-4xl font-bold mt-0">Nosotros</h1>
         </header>
@@ -133,7 +141,7 @@ const App: Component = () => {
           </div>
         </section>
 
-        <section class="bg-green-500 text-white py-12 px-4">
+        <section class="bg-green-500 text-white py-12 px-4  border-b border-gray-200 dark:border-gray-600">
           <h2 class="text-2xl font-bold text-center">Nuestra Visión</h2>
           <p class="mt-4 text-center max-w-2xl mx-auto">
             Healthcare anytime, anywhere. We aim to revolutionize the healthcare industry by making quality healthcare accessible to everyone.
@@ -210,7 +218,7 @@ const App: Component = () => {
       </div>
 
       <section id="contact" class='h-screen dark:bg-gray-800 bg-gray-100'>
-        <div class=" my-12 mx-auto ">
+        <div class="mx-auto">
           <header class="bg-green-500 text-gray-50 text-center w-full py-12">
             <h1 class="text-2xl font-bold mt-0">Contactanos</h1>
           </header>
@@ -226,14 +234,14 @@ const App: Component = () => {
                   <label class="block font-medium mb-[2px] text-green-400" for="exampleInput90">
                     Name
                   </label>
-                  <input type="text" class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-4  00 w-full outline-none rounded-md" id="exampleInput90" placeholder="Name" />
+                  <input type="text" class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-500  00 w-full outline-none rounded-md" id="exampleInput90" placeholder="Name" />
                 </div>
 
                 <div class="mb-3 w-full">
                   <label class="block font-medium mb-[2px] text-green-400" for="exampleInput90">
                     Email
                   </label>
-                  <input type="email" class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-4  w-full outline-none rounded-md" id="exampleInput90"
+                  <input type="email" class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-500  w-full outline-none rounded-md" id="exampleInput90"
                     placeholder="Enter your email address" />
                 </div>
 
@@ -241,15 +249,15 @@ const App: Component = () => {
                   <label class="block font-medium mb-[2px] text-green-400" for="exampleInput90">
                     Message
                   </label>
-                  <textarea placeholder='Escribe tu mensaje' class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-4  rounded-[5px] w-full outline-none" name="" id=""></textarea>
+                  <textarea placeholder='Escribe tu mensaje' class="px-2 py-2 border border-gray-800 dark:border-gray-400 placeholder:text-gray-600 dark:placeholder:text-gray-500  rounded-[5px] w-full outline-none" name="" id=""></textarea>
                 </div>
 
                 <button type="button"
                   class="mb-6 inline-block w-full rounded bg-green-500 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-green-600">
                   Enviar
                 </button>
-                <div class="w-full shrink-0 grow-0 basis-auto ">
-                  <div class="flex flex-wrap justify-between">
+                <div class="w-full shrink-0 grow-0 basis-auto">
+                  <div class="flex flex-wrap justify-between  pb-4">
                     <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
                       <div class="flex items-center">
                         <div class="shrink-0">

@@ -125,25 +125,24 @@ function Chart(): JSX.Element {
 export default function Dashboard(): JSX.Element {
     return (
         <DashboardLayout>
-            <div class="">
-                <div class="flex flex-col">
-                    <div class="overflow-hidden">
-                        <div class="inline-block min-w-full align-middle">
-                            <div class="overflow-hidden min-h-screen max-w-screen bg-gray-50 dark:bg-gray-900 shadow pr-6 pl-6">
-                                <div class="pt-6">
-                                    <div>
-                                        <div class="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
-                                            <div class="mb-2 flex items-center justify-between">
-                                                <div class="shrink-0">
-                                                    <span class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
-                                                        Productos mas populares<span class="text-2xl font-bold text-gray-700 dark:text-gray-300">.</span>
-                                                    </span>
-                                                    <h3 class="text-base font-normal text-gray-600 dark:text-gray-400">
-                                                        Estos son los 5 productos populares
-                                                    </h3>
-                                                </div>
-                                                <div class="flex flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
-                                                    {/* 12.5% 
+            <div class="flex flex-col pb-10">
+                <div class="overflow-hidden">
+                    <div class="inline-block min-w-full align-middle">
+                        <div class="overflow-hidden min-h-screen max-w-screen bg-gray-50 dark:bg-gray-900 shadow pr-6 pl-6">
+                            <div class="pt-6">
+                                <div>
+                                    <div class="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-6 xl:p-8">
+                                        <div class="mb-2 flex items-center justify-between">
+                                            <div class="shrink-0">
+                                                <span class="text-2xl font-bold leading-none text-gray-900 dark:text-white sm:text-3xl">
+                                                    Productos mas populares<span class="text-2xl font-bold text-gray-700 dark:text-gray-300">.</span>
+                                                </span>
+                                                <h3 class="text-base font-normal text-gray-600 dark:text-gray-400">
+                                                    Estos son los 5 productos populares
+                                                </h3>
+                                            </div>
+                                            <div class="flex flex-1 items-center justify-end text-base font-bold text-green-600 dark:text-green-400">
+                                                {/* 12.5% 
             <svg
               class="h-5 w-5"
               fill="currentColor"
@@ -157,40 +156,39 @@ export default function Dashboard(): JSX.Element {
               />
             </svg>
             */}
-                                                </div>
                                             </div>
-                                            <Chart />
-                                            <div class="flex items-center justify-between border-t border-gray-200 pt-3 dark:border-gray-700 sm:pt-6">
-                                                {/* <Datepicker /> */}
-                                                <div></div>
-                                                <div class="shrink-0">
-                                                    <a
-                                                        href="/store"
-                                                        class="inline-flex items-center rounded-lg p-2 text-xs font-medium uppercase text-zinc-800 dark:text-zinc-100 hover:bg-gray-100 dark:hover:bg-gray-700 sm:text-sm"
+                                        </div>
+                                        <Chart />
+                                        <div class="flex items-center justify-between border-t border-gray-200 pt-3 dark:border-gray-700 sm:pt-6">
+                                            {/* <Datepicker /> */}
+                                            <div></div>
+                                            <div class="shrink-0">
+                                                <a
+                                                    href="/store"
+                                                    class="inline-flex items-center rounded-lg p-2 text-xs font-medium uppercase text-zinc-800 dark:text-zinc-100 hover:bg-gray-100 dark:hover:bg-gray-700 sm:text-sm"
+                                                >
+                                                    Ver productos
+                                                    <svg
+                                                        class="ml-1 h-4 w-4 sm:h-5 sm:w-5"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
                                                     >
-                                                        Ver productos
-                                                        <svg
-                                                            class="ml-1 h-4 w-4 sm:h-5 sm:w-5"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <path
-                                                                stroke-linecap="round"
-                                                                stroke-linejoin="round"
-                                                                stroke-width={2}
-                                                                d="M9 5l7 7-7 7"
-                                                            />
-                                                        </svg>
-                                                    </a>
-                                                </div>
+                                                        <path
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width={2}
+                                                            d="M9 5l7 7-7 7"
+                                                        />
+                                                    </svg>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>

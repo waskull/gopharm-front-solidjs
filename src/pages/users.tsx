@@ -143,8 +143,7 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                             <option value="">Todos los roles</option>
                             <option value="admin">Administrador</option>
                             <option value="moderator">Moderador</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="sales">Ventas</option>
+                            <option value="user">Usuario</option>
                         </select>
                     </div>
                 </div>

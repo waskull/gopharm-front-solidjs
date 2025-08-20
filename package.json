@@ -18,6 +18,7 @@
     "vite-plugin-solid": "^2.11.6"
   },
   "dependencies": {
+    "@modular-forms/solid": "^0.25.1",
     "@solidjs/router": "^0.15.3",
     "apexcharts": "^5.2.0",
     "solid-apexcharts": "^0.4.0",

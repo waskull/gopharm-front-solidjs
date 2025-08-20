@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from "@solidjs/router";
 import Dismiss from "solid-dismiss";
-import { FaSolidBell, FaSolidBars } from "solid-icons/fa";
-import { FiSearch } from 'solid-icons/fi'
+import { FaSolidBars } from "solid-icons/fa";
 import { Accessor, createSignal, JSX } from "solid-js";
 import { routes } from "./sidebar";
 import DarkModeToggle from "./DarkModeToggle";
+import { authStore } from "../store";
 
 export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSidebar: Accessor<boolean>, setToggleSidebar: Function }): JSX.Element {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
     let btnEl;
     const { pathname } = useLocation();
     return (
-        <nav class={`${toggleSidebar() ? " ml-0 " : " "} px-3 py-4 z-10 flex sticky justify-between bg-gray-800 border-b border-gray-600`}>
+        <nav class={`${toggleSidebar() ? " ml-0 " : " "} px-3 py-4 z-10 flex sticky  justify-between bg-gray-800 border-b border-gray-600`}>
             <div class="flex items-center text-xl">
                 <FaSolidBars class="me-4 cursor-pointer" onClick={() => setToggleSidebar(!toggleSidebar())} />
 
@@ -30,7 +30,7 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                 <DarkModeToggle/>
                 <div class="relative flex">
                     <button ref={btnEl} class="mr-1 h-8 w-8 flex-shrink-0 justify-center">
-                        <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt={localStorage.getItem("image")} />
+                        <img class="h-8 w-8 rounded-full object-cover" src={authStore.user.image} alt="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
                     </button>
                     <Dismiss
                         menuButton={btnEl}
@@ -72,11 +72,7 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                                     <a href="#"
                                         class="block px-3 py-2 text-left text-sm font-medium text-red-700 transition-colors hover:bg-red-50 dark:text-red-600 dark:hover:bg-red-700/20"
                                         onClick={async () => {
-                                            localStorage.removeItem("accessToken");
-                                            localStorage.removeItem("refreshToken");
-                                            localStorage.removeItem("fullname");
-                                            localStorage.removeItem("image");
-                                            localStorage.removeItem("id");
+                                            authStore.logout();
                                             navigate("/");
                                         }}>
                                         Salir
