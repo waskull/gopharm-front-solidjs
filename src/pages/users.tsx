@@ -2,7 +2,7 @@ import { Accessor, createEffect, createSignal, For, JSX, Show } from "solid-js";
 import DashboardLayout from "../layouts/dashboard-layout";
 import Pagination from "../components/pagination";
 import { FiEdit, FiTrash } from 'solid-icons/fi'
-import Modal from "../components/modal";
+import UserModal from "../components/UserModal";
 
 export interface Root {
     users: User[]
@@ -122,9 +122,7 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                         <p class="text-gray-500 mt-1">Aqui podras ver todos nuestros useros.</p>
                     </div>
                     <div class="mt-4 md:mt-0">
-                        <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Agregar usuario
-                        </button>
+                        <UserModal />
                     </div>
                 </div>
 
@@ -189,24 +187,7 @@ function UserList({ users }: { users: Accessor<Root> }): JSX.Element {
                                 </td>
                                 <td class="px-6 py-1.5 whitespace-nowrap text-sm">{user.username}</td>
                                 <td class="flex justify-end px-6 py-4 whitespace-nowrap text-right text-sm font-semibold">
-                                    <Modal title="Editar Usuario">
-                                        <div class="p-4 md:p-5 space-y-4">
-                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                                            </p>
-                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                                            </p>
-                                        </div>
-                                        <div class="p-4 md:p-5 space-y-4">
-                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                                            </p>
-                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                                            </p>
-                                        </div>
-                                    </Modal>
+                                    <UserModal id={user.id}></UserModal>
                                     <a class="cursor-pointer text-red-600 hover:text-red-900"><FiTrash class="w-5 h-5" /></a>
                                 </td>
                             </tr>

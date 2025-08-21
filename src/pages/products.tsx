@@ -1,6 +1,8 @@
 import { Accessor, Component, createEffect, createSignal, For, JSX, Show } from "solid-js";
 import DashboardLayout from "../layouts/dashboard-layout";
 import Pagination from "../components/pagination";
+import ProductModal from "../components/ProductModal";
+import { FiTrash } from "solid-icons/fi";
 
 
 export interface Root {
@@ -74,9 +76,7 @@ function ProductList({ products }: { products: Accessor<Root> }): JSX.Element {
                         <p class="text-gray-500 mt-1">Aqui podras ver todos nuestros productos.</p>
                     </div>
                     <div class="mt-4 md:mt-0">
-                        <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-150 ease-in-out">
-                            Agregar Producto
-                        </button>
+                        <ProductModal />
                     </div>
                 </div>
 
@@ -131,15 +131,9 @@ function ProductList({ products }: { products: Accessor<Root> }): JSX.Element {
                                 <td class="px-6 py-1.5 whitespace-nowrap text-sm">
                                     <span class={`${product.stock > 0 ? "bg-green-200 text-green-600" : "bg-red-200 text-red-600"} text-xs font-bold me-2 px-2.5 shadow py-2 rounded-lg`}>{product.stock > 0 ? "Disponible" : "Agotado"}</span>
                                 </td>
-                                <td class="px-6 rounded-lg py-1.5 whitespace-nowrap text-sm    text-center flex justify-center items-center h-full gap-2">
-                                    <div class="relative inline-block text-left select-none ">
-                                        <div class="rounded-lg py-4 hover:bg-gray-100 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600 dark:hover:bg-gray-800 cursor-pointer "><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2">
-                                            </path>
-                                        </svg></div>
-                                    </div>
+                                <td class="flex justify-end px-6 py-4 whitespace-nowrap text-right text-sm font-semibold">
+                                    <ProductModal id={product.id}></ProductModal>
+                                    <a class="cursor-pointer text-red-600 hover:text-red-900"><FiTrash class="w-5 h-5" /></a>
                                 </td>
                             </tr>
                         )}

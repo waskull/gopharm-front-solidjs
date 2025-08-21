@@ -50,6 +50,7 @@ export default function SignIn(): JSX.Element {
             body: JSON.stringify({
                 username: values.username,
                 password: values.password,
+                expiresInMins: 120
             }),
             credentials: 'same-origin',
         }).then(res => res.json())
