@@ -43,7 +43,7 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                                 class="absolute end-0 z-auto sm:w-45 md:w-52 lg:w-56 max-w-56 divide-y divide-gray-200 overflow-hidden rounded border border-gray-300 bg-white shadow-sm dark:divide-gray-700 dark:border-gray-600 dark:bg-gray-800"
                             >
                                 <div>
-                                    <a
+                                    {/* <a
                                         href="#"
                                         class="block px-3 py-2 text-sm text-left font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
                                         role="menuitem"
@@ -59,7 +59,7 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                                         onclick={() => navigate("/password")}
                                     >
                                         Cambiar contraseña
-                                    </a>
+                                    </a> */}
                                     <a href="#"
                                         class="block px-3 py-2 text-left text-sm border-t dark:border-t-gray-700 border-b-gray-500 font-medium text-red-700 transition-colors hover:bg-red-50 dark:text-red-600 dark:hover:bg-red-700/20"
                                         onClick={async () => {
@@ -76,4 +76,5 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
             </div >
         </nav >
     );
+
 }
