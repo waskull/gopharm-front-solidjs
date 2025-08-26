@@ -12,11 +12,11 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
     let btnEl;
     const { pathname } = useLocation();
     return (
-        <nav class={`${toggleSidebar() ? " ml-0 " : " "} px-3 py-4 z-10 flex sticky  justify-between bg-gray-800 border-b border-gray-600`}>
+        <nav class={`${toggleSidebar() ? " ml-0 " : " "} px-3 py-4 z-10 flex sticky text-gray-800 dark:text-gray-200 justify-between bg-gray-100 border-b border-gray-500 dark:bg-gray-800 dark:border-gray-600`}>
             <div class="flex items-center text-xl">
                 <FaSolidBars class="me-4 cursor-pointer" onClick={() => setToggleSidebar(!toggleSidebar())} />
 
-                <span class="text-white font-semibold">{routes.find((route) => route.pathname === pathname)?.name.toUpperCase()}</span>
+                <span class="text-gray-700 dark:text-gray-100 font-semibold">{routes.find((route) => route.pathname === pathname)?.name.toUpperCase()}</span>
 
             </div>
             <div class="flex items-center gap-x-5">
@@ -60,17 +60,8 @@ export default function NavBar({ toggleSidebar, setToggleSidebar }: { toggleSide
                                     >
                                         Cambiar contraseña
                                     </a>
-
-                                    <a
-                                        href="#"
-                                        class="block px-3 py-2 text-sm  border-b border-b-gray-700 text-left font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
-                                        role="menuitem"
-                                        onclick={() => navigate("/conf")}
-                                    >
-                                        Configuración
-                                    </a>
                                     <a href="#"
-                                        class="block px-3 py-2 text-left text-sm font-medium text-red-700 transition-colors hover:bg-red-50 dark:text-red-600 dark:hover:bg-red-700/20"
+                                        class="block px-3 py-2 text-left text-sm border-t dark:border-t-gray-700 border-b-gray-500 font-medium text-red-700 transition-colors hover:bg-red-50 dark:text-red-600 dark:hover:bg-red-700/20"
                                         onClick={async () => {
                                             authStore.logout();
                                             navigate("/");

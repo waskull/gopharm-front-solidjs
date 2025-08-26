@@ -71,7 +71,7 @@ export default function SignIn(): JSX.Element {
         <main class="w-full bg-gray-100 dark:bg-gray-900 h-full min-h-screen flex flex-col items-center justify-center px-4">
             <div class="max-w-sm w-full text-gray-800 dark:text-gray-200 space-y-5">
                 <div class="text-center pb-1">
-                    <img src="/logo.png" width="150" class="mx-auto" />
+                    <img src="/logo.png" width="400" class="mx-auto" />
                     <div class="mt-5">
                         <h3 class="text-gray-800 dark:text-gray-200 text-2xl font-bold sm:text-3xl">
                             Iniciar Sesión

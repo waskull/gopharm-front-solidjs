@@ -1,6 +1,7 @@
 import { createForm, SubmitHandler, valiForm, setValue } from '@modular-forms/solid';
 import { createSignal, JSX, onMount } from 'solid-js';
 import * as v from 'valibot';
+import { productStore } from "../store";
 
 const ProductSchema = v.object({
     title: v.pipe(
@@ -37,7 +38,6 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
     const [productForm, { Form, Field }] = createForm<TproductForm>({
         validate: valiForm(ProductSchema),
     });
-
     onMount(() => {
         if (id) {
             fetch(`https://dummyjson.com/products/${id}`)
@@ -54,7 +54,6 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
     });
 
     const handleSubmit: SubmitHandler<TproductForm> = async (values, event) => {
-        console.log(values);
         event.preventDefault();
         setLoading(true);
         let res;
@@ -69,6 +68,8 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                     stock: values.stock,
                 })
             });
+            const randId = Math.floor(Math.random() * 1000);
+            productStore.addProduct({ id: randId, title: values.title, description: values.description, price: values.price, stock: values.stock });
         } else {
             res = await fetch(`https://dummyjson.com/products/${id}`, {
                 method: 'PUT',
@@ -81,11 +82,10 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                 })
             });
         }
-
         const data = await res.json();
         setLoading(false);
-        console.log(data);
-        if (data.id) onClickClose();
+        console.log(id ? "Editado " : "Agregado ", data.id);
+        if (data?.id) onClickClose();
     };
     return (
         <div>
@@ -96,7 +96,7 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                         <Field name="title">
                             {(field, props) => (
                                 <div class="w-full">
-                                    <label for="firstname" class="block py-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
+                                    <label for="title" class="block py-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
                                     <input {...props} type="text"
                                         required
                                         placeholder="Coca-Cola"
@@ -110,7 +110,7 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                         <Field name="description">
                             {(field, props) => (
                                 <div class="w-full ml-2">
-                                    <label for="lastname" class="block py-2 text-sm font-medium text-gray-900 dark:text-white">Descripción:</label>
+                                    <label for="description" class="block py-2 text-sm font-medium text-gray-900 dark:text-white">Descripción:</label>
                                     <input {...props} type="text"
                                         required
                                         value={field.value}
@@ -127,7 +127,7 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                         <Field name="price" type="number">
                             {(field, props) => (
                                 <div class="w-full">
-                                    <label for="age" class="block py-1 mt-1 text-sm font-medium text-gray-900 dark:text-white">Precio:</label>
+                                    <label for="price" class="block py-1 mt-1 text-sm font-medium text-gray-900 dark:text-white">Precio:</label>
                                     <input {...props} type="number"
                                         required
                                         value={field.value}
@@ -138,7 +138,7 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                                                 setValue(productForm, 'price', Number(e.target.value));
                                             }
                                         }}
-                                        id="age"
+                                        id="price"
                                         class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none  transition duration-150 ease-in-out border focus:border-green-600 shadow-sm rounded-lg"
                                     />
                                     {field.error && <div class="text-red-500">{field.error}</div>}
@@ -148,7 +148,7 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                         <Field name="stock" type="number">
                             {(field, props) => (
                                 <div class="w-full  ml-2">
-                                    <label for="age" class="block py-1 mt-1 text-sm font-medium text-gray-900 dark:text-white">Stock inicial:</label>
+                                    <label for="stock" class="block py-1 mt-1 text-sm font-medium text-gray-900 dark:text-white">Stock inicial:</label>
                                     <input {...props} type="number"
                                         required
                                         value={field.value}
@@ -159,7 +159,7 @@ export default function ProductForm({ onClickClose, id }: FormProps): JSX.Elemen
                                                 setValue(productForm, 'stock', Number(e.target.value));
                                             }
                                         }}
-                                        id="age"
+                                        id="stock"
                                         class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none  transition duration-150 ease-in-out border focus:border-green-600 shadow-sm rounded-lg"
                                     />
                                     {field.error && <div class="text-red-500">{field.error}</div>}

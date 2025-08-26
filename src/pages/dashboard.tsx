@@ -164,7 +164,7 @@ export default function Dashboard(): JSX.Element {
                                             <div></div>
                                             <div class="shrink-0">
                                                 <a
-                                                    href="/store"
+                                                    href="/products"
                                                     class="inline-flex items-center rounded-lg p-2 text-xs font-medium uppercase text-zinc-800 dark:text-zinc-100 hover:bg-gray-100 dark:hover:bg-gray-700 sm:text-sm"
                                                 >
                                                     Ver productos

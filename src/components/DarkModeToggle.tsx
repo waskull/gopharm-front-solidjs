@@ -22,7 +22,7 @@ function DarkModeToggle() {
   };
 
   return (
-    <button onClick={toggleDarkMode} class="rounded-md  text-gray-200 dark:text-gray-100">
+    <button onClick={toggleDarkMode} class="rounded-md  text-gray-600 dark:text-gray-100">
       {isDarkMode() ? <HiSolidLightBulb class="w-6 h-6" /> : <HiOutlineLightBulb class="w-6 h-6" />}
     </button>
   );

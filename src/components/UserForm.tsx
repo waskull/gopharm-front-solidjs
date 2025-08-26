@@ -2,6 +2,7 @@ import { createForm, valiForm, SubmitHandler, setValues, setValue } from "@modul
 import { JSX, createSignal, onMount } from "solid-js";
 import * as v from 'valibot';
 import { User } from "../pages/users";
+import { userStore } from "../store";
 
 const UserSchema = v.object({
     firstname: v.pipe(
@@ -13,6 +14,11 @@ const UserSchema = v.object({
         v.string(),
         v.nonEmpty('Por favor introduzca el apellido.'),
         v.minLength(4, 'El apellido debe tener al menos 4 caracteres.')
+    ),
+    username: v.pipe(
+        v.string(),
+        v.nonEmpty('Por favor introduzca el nombre de usuario.'),
+        v.minLength(4, 'El nombre de usuario debe tener al menos 4 caracteres.')
     ),
     age: v.pipe(
         v.number(),
@@ -46,7 +52,6 @@ export default function UserForm({ onClickClose, id }: FormProps): JSX.Element {
     });
 
     onMount(() => {
-        setValue(userForm, 'firstname', "ASDASDASd");
         console.log(id)
         if (id) {
             fetch(`https://dummyjson.com/users/${id}`).then(res => res.json()).then((data: User) => {
@@ -65,11 +70,9 @@ export default function UserForm({ onClickClose, id }: FormProps): JSX.Element {
     });
 
     const handleSubmit: SubmitHandler<TuserForm> = async (values, event) => {
-        console.log(values);
         event.preventDefault();
         setLoading(true);
         let res;
-
         if (!id) {
             res = await fetch('https://dummyjson.com/products/add', {
                 method: 'POST',
@@ -79,9 +82,12 @@ export default function UserForm({ onClickClose, id }: FormProps): JSX.Element {
                     lastName: values.lastname,
                     age: values.age,
                     role: values.role,
-                    phone: values.phone
+                    phone: values.phone,
+                    username: values.username
                 })
             });
+            const randomId: number = Math.floor(Math.random() * 1000);
+            userStore.addUser({ id: randomId, firstName: values.firstname, lastName: values.lastname, age: values.age, role: values.role, phone: values.phone, username: values.username });
         } else {
             res = await fetch(`https://dummyjson.com/users/${id}`, {
                 method: 'PUT',
@@ -91,14 +97,15 @@ export default function UserForm({ onClickClose, id }: FormProps): JSX.Element {
                     lastName: values.lastname,
                     age: values.age,
                     role: values.role,
-                    phone: values.phone
+                    phone: values.phone,
+                    username: values.username
                 })
             });
         }
         const data = await res.json();
         setLoading(false);
         console.log(data);
-        if (data.id) onClickClose();
+        if (data?.id) onClickClose();
     };
     return (
         <div>
@@ -158,17 +165,16 @@ export default function UserForm({ onClickClose, id }: FormProps): JSX.Element {
                                 </div>
                             )}
                         </Field>
+
                         <Field name="role">
                             {(field, props) => (
-                                <div class="w-full ml-2">
+                                <div class="w-full ml-2 mb-2">
                                     <label for="role" class="block py-1 mt-1 text-sm font-medium text-gray-900 dark:text-white">Rol:</label>
-                                    <input {...props} type="text"
-                                        required
-                                        value={field.value}
-                                        id="role"
-                                        placeholder="user"
-                                        class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none  transition duration-150 ease-in-out border focus:border-green-600 shadow-sm rounded-lg"
-                                    />
+                                    <select {...props} required value={field.value} id="role" class="w-full border mt-2 border-gray-400 text-gray-500 dark:text-gray-50 focus:text-gray-900 focus:dark:text-gray-100 rounded-lg px-3 py-2 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 hover:dark:text-gray-200 ">
+                                        <option value="admin">Administrador</option>
+                                        <option value="user">Usuario</option>
+                                        <option value="moderator">Moderador</option>
+                                    </select>
                                     {field.error && <div class="text-red-500">{field.error}</div>}
                                 </div>
                             )}
@@ -185,6 +191,21 @@ export default function UserForm({ onClickClose, id }: FormProps): JSX.Element {
                                         placeholder="+58424943235"
                                         id="phone"
                                         class="w-full mt-2 px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none  transition duration-150 ease-in-out border focus:border-green-600 shadow-sm rounded-lg"
+                                    />
+                                    {field.error && <div class="text-red-500">{field.error}</div>}
+                                </div>
+                            )}
+                        </Field>
+                        <Field name="username">
+                            {(field, props) => (
+                                <div class="w-full ml-2">
+                                    <label for="username" class="block py-2 text-sm font-medium text-gray-900 dark:text-white">Usuario:</label>
+                                    <input {...props} type="text"
+                                        required
+                                        value={field.value}
+                                        id="username"
+                                        placeholder="juan_perez"
+                                        class="w-full px-3 py-2 text-gray-500 dark:text-gray-200 bg-transparent outline-none  transition duration-150 ease-in-out border focus:border-green-600 shadow-sm rounded-lg"
                                     />
                                     {field.error && <div class="text-red-500">{field.error}</div>}
                                 </div>
