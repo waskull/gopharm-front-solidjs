@@ -61,7 +61,8 @@ export default function UserForm({ onClickClose, id }: FormProps): JSX.Element {
                     lastname: data.lastName,
                     age: data.age,
                     role: data.role,
-                    phone: data.phone
+                    phone: data.phone,
+                    username: data.username
                 });
             }).catch(err => {
                 console.log(err);
